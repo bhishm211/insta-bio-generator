@@ -1,163 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InstaBioMagic - Best Instagram Bio Generator for 2025</title>
-    <meta name="description" content="Generate perfect Instagram bios instantly! Funny, cool, aesthetic, professional bios with our free Instagram bio generator. Copy, save or download your favorite bios.">
-    <meta name="keywords" content="instagram bio, bio generator, instagram bio ideas, cool bios, aesthetic bio, funny bios, instagram bio maker">
-    <meta property="og:title" content="InstaBioMagic - Best Instagram Bio Generator">
-    <meta property="og:description" content="Generate perfect Instagram bios instantly! Funny, cool, aesthetic, professional bios with our free Instagram bio generator.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://instabiomagic.com">
-    <meta property="og:image" content="https://instabiomagic.com/images/og-image.jpg">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="script.js" defer></script>
-</head>
-<body>
-    <!-- Header Section -->
-    <header class="animated-header">
-        <div class="theme-toggle">
-            <button id="themeToggle"><i class="fas fa-moon"></i></button>
+<header class="premium-header">
+    <nav class="premium-nav">
+        <div class="nav-brand">
+            <span class="logo-icon">✨</span>
+            <h1>InstaBioMagic<span class="premium-badge">PRO</span></h1>
         </div>
-        <div class="header-content">
-            <h1 id="typewriter">InstaBioMagic</h1>
-            <p class="subtitle">Best Instagram Bio Generator</p>
-            <div class="live-counter">
-                <i class="fas fa-users"></i> <span id="userCount">1,234</span> users generating bios now
-            </div>
+        <div class="nav-actions">
+            <button class="nav-btn premium-toggle">
+                <i class="fas fa-gem"></i> Go Premium
+            </button>
+            <button id="themeToggle" class="nav-btn">
+                <i class="fas fa-moon"></i>
+            </button>
         </div>
-        <div class="stars"></div>
-    </header>
-
-    <!-- Trending Bios Section -->
-    <section class="section trending-bios">
-        <h2>Trending Instagram Bios</h2>
-        <p class="section-description">Most popular bios this week</p>
-        <div class="bios-grid">
-            <div class="bio-card glass">
-                <div class="bio-content">
-                    "Living my story. Turning pages daily. 📖✨"
-                </div>
-                <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
-            </div>
-            <div class="bio-card glass">
-                <div class="bio-content">
-                    "Coffee in one hand, confidence in the other. ☕🔥"
-                </div>
-                <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
-            </div>
-            <div class="bio-card glass">
-                <div class="bio-content">
-                    "Creating my sunshine on cloudy days. 🌦️✨"
-                </div>
-                <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
-            </div>
-            <div class="bio-card glass">
-                <div class="bio-content">
-                    "Slaying goals and looking cute while doing it. 💅🏆"
-                </div>
-                <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
-            </div>
-            <div class="bio-card glass">
-                <div class="bio-content">
-                    "Professional snack eater & Netflix binger. 🍿😴"
-                </div>
-                <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
-            </div>
-            <div class="bio-card glass">
-                <div class="bio-content">
-                    "Collecting moments, not things. 🌍✈️"
-                </div>
-                <button class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+    </nav>
+    
+    <div class="header-content">
+        <div class="header-text">
+            <h1 id="typewriter">
+                <span class="gradient-text">Craft Your Perfect</span><br>
+                Instagram Bio
+            </h1>
+            <p class="subtitle">AI-powered bio generator with 10,000+ templates</p>
+            <div class="header-cta">
+                <button class="cta-primary">
+                    <i class="fas fa-magic"></i> Generate Bio
+                </button>
+                <button class="cta-secondary">
+                    <i class="fas fa-play-circle"></i> Watch Demo
+                </button>
             </div>
         </div>
-    </section>
-
-    <!-- Bio Generator Section -->
-    <section class="section generator">
-        <h2>Instagram Bio Generator</h2>
-        <p class="section-description">Create your perfect bio in seconds</p>
-        <div class="generator-container glass">
-            <div class="controls">
-                <select id="moodSelector">
-                    <option value="all">All Moods</option>
-                    <option value="funny">Funny</option>
-                    <option value="sad">Sad</option>
-                    <option value="love">Love</option>
-                    <option value="savage">Savage</option>
-                    <option value="motivational">Motivational</option>
-                </select>
-                <button id="generateBtn" class="btn-primary">Generate Bio</button>
-            </div>
-            <div class="output-container">
-                <div id="bioOutput" class="bio-output">
-                    Your generated bio will appear here...
-                </div>
-                <div class="action-buttons">
-                    <button id="copyBioBtn" class="btn-secondary"><i class="far fa-copy"></i> Copy</button>
-                    <button id="saveBioBtn" class="btn-secondary"><i class="far fa-save"></i> Save</button>
-                    <button id="downloadBioBtn" class="btn-secondary"><i class="fas fa-download"></i> Download</button>
-                    <div class="share-buttons">
-                        <button class="share-btn whatsapp"><i class="fab fa-whatsapp"></i></button>
-                        <button class="share-btn instagram"><i class="fab fa-instagram"></i></button>
-                        <button class="share-btn twitter"><i class="fab fa-twitter"></i></button>
+        <div class="header-demo">
+            <div class="phone-mockup">
+                <div class="phone-screen">
+                    <div class="bio-preview">
+                        <p class="username">@yourusername</p>
+                        <div class="preview-bio">
+                            "Digital creator ✨<br>
+                            Turning ideas into reality<br>
+                            Photography | Design | Code<br>
+                            🌍 Based in Paris<br>
+                            👇 Latest project"
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Saved Bios Section -->
-    <section class="section saved-bios">
-        <h2>Your Saved Bios</h2>
-        <p class="section-description">All bios you've saved appear here</p>
-        <div id="savedBiosContainer" class="bios-grid">
-            <!-- Bios will be loaded from localStorage here -->
+    </div>
+    
+    <div class="scrolling-brands">
+        <p>Trusted by creators at:</p>
+        <div class="brands-container">
+            <span>Netflix</span>
+            <span>Adobe</span>
+            <span>Forbes</span>
+            <span>TikTok</span>
+            <span>Spotify</span>
         </div>
-    </section>
-
-    <!-- Blog Section -->
-    <section class="section blog">
-        <h2>Instagram Bio Tips & Ideas</h2>
-        <p class="section-description">Read our latest articles</p>
-        <div class="blog-grid">
-            <a href="blog1.html" class="blog-card">
-                <h3>Top 50 Instagram Bios for Girls (2025)</h3>
-                <p>The most stylish and trendy bios for girls this year.</p>
-            </a>
-            <a href="blog2.html" class="blog-card">
-                <h3>100+ Funny Instagram Bios to Copy Now</h3>
-                <p>Make your followers laugh with these hilarious bios.</p>
-            </a>
-            <a href="blog3.html" class="blog-card">
-                <h3>How to Write a Perfect Instagram Bio</h3>
-                <p>Complete guide to crafting the ideal Instagram profile.</p>
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="social-links">
-                <a href="https://wa.me/" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
-            </div>
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Contact Us</a>
-            </div>
-            <div class="copyright">
-                &copy; 2025 InstaBioMagic. All rights reserved.
-            </div>
-        </div>
-    </footer>
-
-    <!-- Toast Notification -->
-    <div id="toast" class="toast">Copied to clipboard!</div>
-</body>
-</html>
+    </div>
+    
+    <div class="animated-background">
+        <div class="gradient-circle circle-1"></div>
+        <div class="gradient-circle circle-2"></div>
+        <div class="gradient-circle circle-3"></div>
+    </div>
+</header>
