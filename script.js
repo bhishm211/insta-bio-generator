@@ -1,108 +1,53 @@
-const bios = {
-  all: [
-    "💫 Dream. Believe. Achieve.",
-    "🌈 Creating my own sunshine.",
-    "🎯 Focused. Empowered. Blessed.",
-    "🔥 Hustle in silence. Let success make the noise.",
-    "🌍 Travel | Inspire | Repeat",
-    "✨ Just vibes & good energy.",
-    "💖 Be you. Do you. For you.",
-    "🚀 Grinding today for a better tomorrow."
-  ],
-  funny: ["😂 Insert bio here.", "😜 Professional overthinker.", "🥱 Sleeping is my hobby."],
-  sad: ["💔 Broken but breathing.", "🌧️ Cloudy with a chance of tears."],
-  love: ["❤️ Love conquers all.", "💖 You + Me = Forever"],
-  motivation: ["🔥 Make it happen.", "🚀 Stay focused, stay strong."],
-  savage: ["👑 Not your toy.", "🚫 No fake vibes."]
+// Theme Toggle
+const toggle = document.getElementById('toggle-theme');
+toggle.onclick = () => {
+  document.body.classList.toggle('light');
 };
 
-let savedBios = JSON.parse(localStorage.getItem('savedBios')) || [];
+// Fake Counter (Optional)
+// Bios Data
+const bios = {
+  funny: ["😂 Just winging it.", "🤣 Insert funny bio here.", "😜 Professional procrastinator."],
+  love: ["💖 You + Me = Forever.", "❤️ Love yourself first.", "💕 Living in love."],
+  sad: ["💔 Broken but breathing.", "😢 Lost in my own thoughts.", "🌧️ Sometimes smiles hide pain."],
+  motivation: ["🔥 Dream. Believe. Achieve.", "🚀 Grinding today, shining tomorrow.", "💪 Stay focused, stay strong."],
+  savage: ["😎 Proof that I can do better.", "🖤 Born to express, not impress.", "🔥 Silent killer."],
+  all: []
+};
+bios.all = [...bios.funny, ...bios.love, ...bios.sad, ...bios.motivation, ...bios.savage];
 
-function updateSavedBios() {
-  const savedDiv = document.getElementById('savedBios');
-  if (!savedBios.length) {
-    savedDiv.innerHTML = 'No saved bios yet.';
-    return;
-  }
-  savedDiv.innerHTML = '';
-  savedBios.forEach(bio => {
-    const div = document.createElement('div');
-    div.className = 'bio-card';
-    div.innerText = bio;
-    div.onclick = () => copyBio(bio);
-    savedDiv.appendChild(div);
-  });
-}
-
-function generateBio() {
+// Generate
+document.getElementById('generate').onclick = () => {
   const mood = document.getElementById('mood').value;
-  const moodBios = mood === 'all' ? Object.values(bios).flat() : bios[mood];
-  const random = Math.floor(Math.random() * moodBios.length);
-  document.getElementById('bioOutput').innerText = moodBios[random];
-}
+  const bioArray = bios[mood];
+  const random = Math.floor(Math.random() * bioArray.length);
+  document.getElementById('output').innerText = bioArray[random];
+};
 
-function copyGeneratedBio() {
-  const text = document.getElementById('bioOutput').innerText;
-  navigator.clipboard.writeText(text);
+// Copy
+document.getElementById('copy').onclick = () => {
+  navigator.clipboard.writeText(document.getElementById('output').innerText);
   alert('Copied to clipboard!');
-}
+};
 
-function copyBio(text) {
-  navigator.clipboard.writeText(text);
-  alert('Copied to clipboard!');
-}
-
-function saveBio() {
-  const text = document.getElementById('bioOutput').innerText;
-  if (text && !savedBios.includes(text)) {
-    savedBios.push(text);
-    localStorage.setItem('savedBios', JSON.stringify(savedBios));
-    updateSavedBios();
-    alert('Bio saved!');
+// Save
+document.getElementById('save').onclick = () => {
+  const bio = document.getElementById('output').innerText;
+  if (bio) {
+    const saved = document.createElement('div');
+    saved.innerText = bio;
+    document.getElementById('saved-bios').appendChild(saved);
   }
-}
+};
 
-function downloadBio() {
-  const text = document.getElementById('bioOutput').innerText;
-  const canvas = document.createElement('canvas');
-  canvas.width = 500;
-  canvas.height = 250;
-  const ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#333';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.font = '20px Poppins';
-  ctx.fillStyle = 'white';
-  ctx.fillText(text, 50, 130);
-  const link = document.createElement('a');
-  link.download = 'bio.png';
-  link.href = canvas.toDataURL();
-  link.click();
-}
-
-function share(platform) {
-  const text = "Check out this awesome Instagram Bio Generator: [Your Website]";
-  if (platform === 'whatsapp') {
-    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`);
-  } else if (platform === 'twitter') {
-    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`);
-  } else if (platform === 'facebook') {
-    window.open(`https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(text)}`);
-  }
-}
-
-function fakeLiveUsers() {
-  document.getElementById('userCount').innerText = Math.floor(Math.random() * (999 - 100 + 1)) + 100;
-}
-setInterval(fakeLiveUsers, 3000);
-fakeLiveUsers();
-
-document.getElementById('themeToggle').addEventListener('click', () => {
-  document.body.classList.toggle('light');
-});
-
-const cursor = document.querySelector('.cursor');
-document.addEventListener('mousemove', e => {
-  cursor.style.left = e.pageX + 'px';
-  cursor.style.top = e.pageY + 'px';
-});
-updateSavedBios();
+// Download
+document.getElementById('download').onclick = () => {
+  const bio = document.getElementById('output').innerText;
+  const a = document.createElement('a');
+  const blob = new Blob([bio], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  a.href = url;
+  a.download = 'insta-bio.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+};
