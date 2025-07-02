@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  color: white;
+  transition: background 0.5s, color 0.5s;
+  overflow-x: hidden;
+  cursor: none;
+}
+header {
+  text-align: center;
+  padding: 80px 20px 40px;
+  background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?fit=crop&w=1400&q=80') no-repeat center/cover;
+}
+header h1 {
+  font-size: 48px;
+  background: linear-gradient(to right, #ff6a00, #ee0979);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+header p {
+  margin: 10px 0;
+  font-size: 18px;
+  opacity: 0.9;
+}
+header .live-users {
+  font-size: 14px;
+  opacity: 0.7;
+}
+header #themeToggle {
+  margin-top: 15px;
+  background: transparent;
+  border: 1px solid white;
+  padding: 8px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  color: white;
+}
+h2 {
+  text-align: center;
+  margin: 30px 0;
+}
+.bio-section, .generator-section, .saved-section {
+  max-width: 1000px;
+  margin: auto;
+  padding: 30px;
+}
+.bios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.bio-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px 20px;
+  border-radius: 15px;
+  border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.bio-card:hover {
+  transform: scale(1.05);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.generator-section .output {
+  margin: 15px 0;
+  background: rgba(255,255,255,0.08);
+  padding: 15px;
+  border-radius: 10px;
+  min-height: 60px;
+}
+.generator-section .actions button {
+  margin: 5px;
+}
+button {
+  background: linear-gradient(to right, #ff6a00, #ee0979);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #ee0979;
+}
+footer {
+  text-align: center;
+  background: #111;
+  padding: 20px;
+  font-size: 14px;
+}
+footer a {
+  color: #ee0979;
+}
+.mood-select {
+  margin: 10px 0;
+  text-align: center;
+}
+.cursor {
+  width: 15px;
+  height: 15px;
+  background: white;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: transform 0.2s;
+}
+body.light {
+  background: linear-gradient(135deg, #ffffff, #d4d4d4);
+  color: black;
+}
+body.light header {
+  background-color: #f0f0f0;
+}
+body.light .bio-card {
+  background: rgba(0, 0, 0, 0.05);
+}
