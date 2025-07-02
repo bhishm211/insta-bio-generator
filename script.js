@@ -1,190 +1,199 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Theme toggle
-    const themeToggle = document.getElementById('themeToggle');
-    const body = document.body;
-    const icon = themeToggle.querySelector('i');
+// Premium Typewriter Effect
+const typewriterText = "InstaBioMagic PRO - AI-Powered Instagram Bio Generator";
+const typewriterElement = document.getElementById('typewriter');
+let i = 0;
+
+function typeWriter() {
+    if (i < typewriterText.length) {
+        typewriterElement.innerHTML += typewriterText.charAt(i);
+        i++;
+        setTimeout(typeWriter, Math.random() * 100 + 50);
+    } else {
+        // Add blinking cursor
+        typewriterElement.innerHTML += '<span class="blinking-cursor">|</span>';
+    }
+}
+
+// Start typewriter effect after 1 second
+setTimeout(typeWriter, 1000);
+
+// Premium Theme Toggle
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-theme');
     
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // Save preference to localStorage
+    const isDark = body.classList.contains('dark-theme');
+    localStorage.setItem('darkTheme', isDark);
     
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-        body.classList.add('dark-mode');
-        icon.classList.replace('fa-moon', 'fa-sun');
+    // Update icon
+    themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+});
+
+// Check for saved theme preference
+if (localStorage.getItem('darkTheme') === 'true') {
+    body.classList.add('dark-theme');
+    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+}
+
+// Premium Bio Generator
+const moods = {
+    funny: [
+        "Professional snack eater. Unlicensed therapist. Will pet your dog.",
+        "I'm not lazy, I'm on energy-saving mode. 🔋",
+        "I followed my dreams... now I'm lost. 🗺️",
+        "My diet starts tomorrow... just like yesterday. 🍩"
+    ],
+    professional: [
+        "Digital marketing expert helping brands grow | Speaker | Coffee enthusiast",
+        "UX Designer creating intuitive experiences | Figma lover | Based in SF",
+        "Full-stack developer | JavaScript enthusiast | Open source contributor"
+    ],
+    creative: [
+        "Painting my dreams one canvas at a time 🎨 | Color enthusiast | NYC",
+        "Writer of words | Dreamer of dreams | Collector of stories 📚",
+        "Photographer capturing moments that matter 📸 | Travel addict 🌍"
+    ]
+};
+
+const generatePremiumBtn = document.getElementById('generatePremiumBtn');
+const premiumBioOutput = document.getElementById('premiumBioOutput');
+
+generatePremiumBtn.addEventListener('click', () => {
+    const style = document.getElementById('bioStyle').value;
+    const tone = document.querySelector('.tone-btn.active').dataset.tone;
+    const keywords = document.getElementById('keywords').value;
+    
+    // Simulate AI generation
+    premiumBioOutput.innerHTML = generateAIBio(style, tone, keywords);
+    
+    // Update character count
+    updateCharCount();
+});
+
+function generateAIBio(style, tone, keywords) {
+    // In a real app, this would call an AI API
+    // Here we simulate with predefined templates
+    
+    let baseBio = "";
+    const keywordPhrase = keywords ? `| ${keywords.split(',').join(' | ')}` : "";
+    
+    switch(style) {
+        case 'professional':
+            baseBio = `Digital creator ${keywordPhrase}\nTurning ideas into reality\nCurrently working on new projects\n👇 Latest work`;
+            break;
+        case 'creative':
+            baseBio = `Creating magic ${keywordPhrase}\nArtist • Dreamer • Visionary\nBased in [Location]\n✨ Available for collaborations`;
+            break;
+        case 'funny':
+            baseBio = `Professional ${keywords || "human"} ${keywordPhrase}\nWill work for coffee ☕\nCertified snack enthusiast 🍕\nDM for dad jokes`;
+            break;
+        default:
+            baseBio = `Living my best life ${keywordPhrase}\nCreating • Exploring • Growing\n📍 [Location]\n👇 Check out my latest`;
     }
     
-    themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        
-        if (body.classList.contains('dark-mode')) {
-            icon.classList.replace('fa-moon', 'fa-sun');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            icon.classList.replace('fa-sun', 'fa-moon');
-            localStorage.setItem('theme', 'light');
-        }
+    // Add tone variations
+    if (tone === 'witty') {
+        baseBio = baseBio.replace(/\./g, "...").replace(/\n/g, "\n💫 ");
+    } else if (tone === 'inspirational') {
+        baseBio = "✨ " + baseBio.replace(/\n/g, "\n🌟 ");
+    }
+    
+    return baseBio;
+}
+
+// Character counter
+function updateCharCount() {
+    const content = premiumBioOutput.textContent;
+    const charCount = content.length;
+    const emojiCount = (content.match(/[\u{1F600}-\u{1F6FF}]/gu) || []).length;
+    
+    document.querySelector('.char-count').textContent = `${charCount}/150`;
+    document.querySelector('.emoji-count').textContent = `${emojiCount} emojis`;
+    
+    if (charCount > 150) {
+        document.querySelector('.char-count').classList.add('over-limit');
+    } else {
+        document.querySelector('.char-count').classList.remove('over-limit');
+    }
+}
+
+premiumBioOutput.addEventListener('input', updateCharCount);
+
+// Tone selector
+document.querySelectorAll('.tone-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.tone-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
     });
-    
-    // Mobile menu toggle
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const navLinks = document.querySelector('.nav-links');
-    
-    mobileMenuBtn.addEventListener('click', () => {
-        navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+});
+
+// Emoji style selector
+document.querySelectorAll('.emoji-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
     });
-    
-    // FAQ accordion
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        question.addEventListener('click', () => {
-            item.classList.toggle('active');
-            
-            // Close other items
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item && otherItem.classList.contains('active')) {
-                    otherItem.classList.remove('active');
-                }
-            });
-        });
+});
+
+// Font selector
+document.querySelector('.font-choice').addEventListener('change', (e) => {
+    premiumBioOutput.style.fontFamily = e.target.value;
+});
+
+// Color picker
+document.querySelector('.color-picker input').addEventListener('input', (e) => {
+    premiumBioOutput.style.color = e.target.value;
+});
+
+// Alignment buttons
+document.querySelectorAll('.align-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.align-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        premiumBioOutput.style.textAlign = btn.classList.contains('left') ? 'left' :
+                                         btn.classList.contains('center') ? 'center' : 'right';
     });
+});
+
+// Copy to clipboard
+document.querySelector('.copy-btn').addEventListener('click', () => {
+    const text = premiumBioOutput.textContent;
+    navigator.clipboard.writeText(text).then(() => {
+        showToast('Bio copied to clipboard!');
+    });
+});
+
+// Toast notification
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'premium-toast';
+    toast.textContent = message;
+    document.body.appendChild(toast);
     
-    // Bio generator functionality
-    const moodBtns = document.querySelectorAll('.mood-btn');
-    const generateBtn = document.getElementById('generateBtn');
-    const bioDisplay = document.getElementById('bioDisplay');
-    const copyBtn = document.getElementById('copyBtn');
-    const downloadBtn = document.getElementById('downloadBtn');
-    const saveBtn = document.getElementById('saveBtn');
-    const toast = document.getElementById('toast');
-    const aiForm = document.getElementById('aiForm');
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 10);
     
-    let currentMood = 'professional';
-    
-    // Professional bio database
-    const bios = {
-        professional: [
-            "Digital Marketing Specialist | Helping brands grow their online presence | SEO & Content Strategy",
-            "UX/UI Designer | Creating intuitive digital experiences | Adobe Creative Suite | Figma",
-            "Financial Consultant | Wealth Management | Retirement Planning | Let's build your future",
-            "Software Engineer | Full Stack Developer | JavaScript | Python | Building scalable solutions"
-        ],
-        creative: [
-            "Visual Storyteller ✨ | Photography & Design | Capturing moments that matter",
-            "Creative Director | Idea Generator | Turning concepts into visual masterpieces",
-            "Writer & Content Creator | Words that inspire and engage | Currently working on my novel",
-            "Art Director | Branding Specialist | Making ideas visually compelling"
-        ],
-        minimal: [
-            "Design. Create. Inspire.",
-            "Building digital experiences",
-            "Photographer | NYC",
-            "Writer | Thinker | Coffee enthusiast"
-        ],
-        fun: [
-            "Professional coffee drinker ☕ | Occasional web designer",
-            "I put the 'pro' in procrastination | Digital Marketer by day, Netflix critic by night",
-            "Not a regular mom, a cool mom | Also a CEO",
-            "Saving the world one spreadsheet at a time | Financial Analyst"
-        ]
-    };
-    
-    // AI-generated bios database
-    const aiBios = {
-        professional: [
-            "{profession} | {specialty} | {achievement} | Let's connect!",
-            "Helping businesses {value proposition} | {profession} | {credential}",
-            "{profession} at {company} | Focused on {specialty} | {personal detail}",
-            "Passionate about {interest} | {profession} | {unique selling point}"
-        ],
-        friendly: [
-            "Hi there! I'm a {profession} who loves {interest}. Let's chat about {topic}!",
-            "{profession} by day, {hobby} by night | Always up for coffee and conversation",
-            "I help people {value} through {service} | {fun fact about you}",
-            "{profession} | {personal motto} | Let's work together!"
-        ],
-        creative: [
-            "✨ Creating magic through {medium} | {profession} | {artistic style}",
-            "{creative role} | Turning ideas into {creative output} | {inspiration}",
-            "I {creative action} for {audience} | {unique perspective} | {current project}",
-            "{artistic identity} | {creative philosophy} | Available for {services}"
-        ],
-        authoritative: [
-            "Award-winning {profession} | {credentials} | {industry} expert",
-            "{title} at {company} | {years} years experience in {field} | {specialization}",
-            "Leading {industry} professional | Published author | Keynote speaker",
-            "{profession} | Trusted by {notable clients} | {unique methodology}"
-        ]
-    };
-    
-    // Generate random bio
-    function generateBio() {
-        bioDisplay.innerHTML = '<div>Generating your perfect bio...</div>';
-        
+    setTimeout(() => {
+        toast.classList.remove('show');
         setTimeout(() => {
-            const selectedBios = bios[currentMood];
-            const randomIndex = Math.floor(Math.random() * selectedBios.length);
-            bioDisplay.textContent = selectedBios[randomIndex];
-            
-            showToast('Bio generated successfully');
-        }, 800);
-    }
-    
-    // Generate AI bio
-    function generateAIBio(profession, tone, style) {
-        bioDisplay.innerHTML = '<div>AI is crafting your perfect bio...</div>';
-        
-        setTimeout(() => {
-            const templates = aiBios[tone] || aiBios['professional'];
-            const template = templates[Math.floor(Math.random() * templates.length)];
-            
-            // Replace placeholders
-            let bio = template
-                .replace('{profession}', profession || 'Professional')
-                .replace('{specialty}', getRandomSpecialty(profession))
-                .replace('{achievement}', getRandomAchievement())
-                .replace('{value proposition}', getRandomValueProp(profession))
-                .replace('{company}', getRandomCompany())
-                .replace('{personal detail}', getRandomPersonalDetail())
-                .replace('{interest}', getRandomInterest(profession))
-                .replace('{hobby}', getRandomHobby())
-                .replace('{topic}', getRandomTopic(profession));
-            
-            // Apply style
-            bio = applyStyle(bio, style);
-            
-            bioDisplay.textContent = bio;
-            showToast('AI bio generated successfully');
-        }, 1500);
-    }
-    
-    // Helper functions for AI generation
-    function getRandomSpecialty(profession) {
-        const specialties = {
-            'designer': ['UI/UX', 'Brand Identity', 'Print Design', 'Web Design'],
-            'developer': ['Frontend', 'Backend', 'Mobile Apps', 'Cloud Solutions'],
-            'marketer': ['Social Media', 'Content Marketing', 'SEO', 'Email Marketing'],
-            'writer': ['Technical Writing', 'Creative Writing', 'Copywriting', 'Editing']
-        };
-        
-        for (const [key, values] of Object.entries(specialties)) {
-            if (profession.toLowerCase().includes(key)) {
-                return values[Math.floor(Math.random() * values.length)];
-            }
-        }
-        
-        return 'Specialist';
-    }
-    
-    function getRandomAchievement() {
-        const achievements = [
-            'Featured in Forbes 30 Under 30',
-            'Helped 100+ clients achieve their goals',
-            '10+ years of industry experience',
-            'Award-winning professional',
-            'Certified expert in my field'
-        ];
-        return achievements[Math.floor(Math.random() * achievements.length)];
-    }
-    
-    function getRandomValueProp(profession)
+            document.body.removeChild(toast);
+        }, 300);
+    }, 3000);
+}
+
+// Fake live users counter
+function updateLiveUsers() {
+    const baseUsers = 1245;
+    const randomChange = Math.floor(Math.random() * 20) - 10;
+    const newCount = baseUsers + randomChange;
+    document.getElementById('userCount').textContent = newCount.toLocaleString();
+}
+
+setInterval(updateLiveUsers, 3000);
+
+// Initialize
+updateLiveUsers();
