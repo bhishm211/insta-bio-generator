@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InstaBioMagic - Instagram Bio Generator</title>
+  <meta name="description" content="Create stylish, cool and trending Instagram bios. Generate, copy, save, and download bio cards.">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="cursor"></div>
+
+  <header>
+    <h1 class="typewriter">InstaBioMagic 🚀</h1>
+    <p>🔥 Create | Copy | Share | Shine</p>
+    <p class="live-users">👥 <span id="userCount"></span> users online</p>
+    <button id="themeToggle">🌗 Toggle Theme</button>
+  </header>
+
+  <section class="bio-section">
+    <h2>🔥 Trending Bios</h2>
+    <div class="bios" id="trendingBios"></div>
+  </section>
+
+  <section class="generator-section">
+    <h2>🎯 Generate Your Bio</h2>
+    <div class="mood-select">
+      <label>Select Mood:</label>
+      <select id="mood">
+        <option value="all">All</option>
+        <option value="funny">Funny</option>
+        <option value="sad">Sad</option>
+        <option value="love">Love</option>
+        <option value="motivation">Motivational</option>
+        <option value="savage">Savage</option>
+      </select>
+    </div>
+    <button onclick="generateBio()">✨ Generate Bio</button>
+    <div class="output" id="bioOutput">Your generated bio will appear here...</div>
+    <div class="actions">
+      <button onclick="copyGeneratedBio()">📋 Copy</button>
+      <button onclick="downloadBio()">📥 Download as Image</button>
+      <button onclick="saveBio()">💾 Save</button>
+    </div>
+  </section>
+
+  <section class="saved-section">
+    <h2>⭐ Your Saved Bios</h2>
+    <div class="bios" id="savedBios">No saved bios yet.</div>
+  </section>
+
+  <footer>
+    <p>© 2025 InstaBioMagic | All rights reserved.</p>
+    <p>🚀 AI Suggestion Feature — <b>Coming Soon...</b></p>
+    <div class="share">
+      <p>Share: 
+        <a href="#" onclick="share('whatsapp')">WhatsApp</a> | 
+        <a href="#" onclick="share('twitter')">Twitter</a> | 
+        <a href="#" onclick="share('facebook')">Facebook</a>
+      </p>
+    </div>
+  </footer>
+
+<script src="script.js"></script>
+</body>
+</html>
