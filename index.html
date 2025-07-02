@@ -65,3 +65,149 @@
         <div class="gradient-circle circle-3"></div>
     </div>
 </header>
+<section class="premium-generator">
+    <div class="container">
+        <div class="section-header">
+            <h2>AI-Powered Bio Generator</h2>
+            <p class="section-subtitle">Customize every aspect of your perfect bio</p>
+        </div>
+        
+        <div class="generator-container">
+            <div class="generator-controls glass-panel">
+                <div class="control-group">
+                    <label for="bioStyle">Style</label>
+                    <select id="bioStyle" class="premium-select">
+                        <option value="casual">Casual</option>
+                        <option value="professional">Professional</option>
+                        <option value="funny">Funny</option>
+                        <option value="savage">Savage</option>
+                        <option value="romantic">Romantic</option>
+                        <option value="creative">Creative</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="bioTone">Tone</label>
+                    <div class="tone-selector">
+                        <button class="tone-btn active" data-tone="friendly">
+                            <i class="fas fa-smile"></i> Friendly
+                        </button>
+                        <button class="tone-btn" data-tone="witty">
+                            <i class="fas fa-grin-tongue-wink"></i> Witty
+                        </button>
+                        <button class="tone-btn" data-tone="inspirational">
+                            <i class="fas fa-lightbulb"></i> Inspirational
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label for="keywords">Keywords</label>
+                    <input type="text" id="keywords" placeholder="e.g., travel, photography, fitness">
+                </div>
+                
+                <div class="control-group">
+                    <label>Emoji Style</label>
+                    <div class="emoji-style">
+                        <button class="emoji-btn active" data-style="modern">
+                            <span>😊</span> Modern
+                        </button>
+                        <button class="emoji-btn" data-style="classic">
+                            <span>🙂</span> Classic
+                        </button>
+                        <button class="emoji-btn" data-style="none">
+                            <span>🚫</span> None
+                        </button>
+                    </div>
+                </div>
+                
+                <button id="generatePremiumBtn" class="generate-btn">
+                    <i class="fas fa-magic"></i> Generate Bio
+                </button>
+            </div>
+            
+            <div class="generator-output glass-panel">
+                <div class="output-header">
+                    <h3>Your Custom Bio</h3>
+                    <div class="output-actions">
+                        <button class="action-btn copy-btn">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                        <button class="action-btn save-btn">
+                            <i class="fas fa-bookmark"></i>
+                        </button>
+                        <button class="action-btn download-btn">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bio-preview-output">
+                    <div class="bio-meta">
+                        <span class="char-count">0/150</span>
+                        <span class="emoji-count">0 emojis</span>
+                    </div>
+                    <div id="premiumBioOutput" class="bio-content" contenteditable="true">
+                        Your AI-generated bio will appear here. You can edit it directly!
+                    </div>
+                </div>
+                
+                <div class="customization-options">
+                    <div class="font-selector">
+                        <label>Font:</label>
+                        <select class="font-choice">
+                            <option value="sans-serif">Default</option>
+                            <option value="serif">Serif</option>
+                            <option value="monospace">Monospace</option>
+                            <option value="cursive">Handwritten</option>
+                        </select>
+                    </div>
+                    
+                    <div class="color-picker">
+                        <label>Color:</label>
+                        <input type="color" value="#6C5CE7">
+                    </div>
+                    
+                    <div class="alignment">
+                        <label>Align:</label>
+                        <button class="align-btn left active">
+                            <i class="fas fa-align-left"></i>
+                        </button>
+                        <button class="align-btn center">
+                            <i class="fas fa-align-center"></i>
+                        </button>
+                        <button class="align-btn right">
+                            <i class="fas fa-align-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="premium-features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>AI Intelligence</h3>
+                <p>Our advanced AI learns from top Instagram profiles to craft bios that get noticed.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h3>Full Customization</h3>
+                <p>Change fonts, colors, alignment and more to match your brand perfectly.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Performance Analytics</h3>
+                <p>See which bios perform best with our engagement prediction system.</p>
+            </div>
+        </div>
+    </div>
+</section>
